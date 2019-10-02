@@ -1,0 +1,112 @@
+\UseRawInputEncoding  % https://tex.stackexchange.com/a/429957/123368
+\documentclass[index=totoc,hyperref, openany]{labbook} %openany means no gap is made between lab days, remove to restore the gap. oneside can also be added to remove the shift that odd pages have to the right for easier reading.
+   
+% Margins
+\usepackage[margin=1in,inner=1.25in,outer=0.75in]{geometry}
+
+\usepackage[%
+  hidelinks,
+  backref=page,%
+  pdfpagelabels=true,%
+  plainpages=false,%
+  colorlinks=false,% 
+  bookmarks=true,%
+  pdfview=FitB,%
+  pdftitle={Beer Journal May 20, 2018 - },%
+  pdfcreator={Bellock.net},%
+  pdfauthor={Kenneth E. Bellock},%
+  pdfsubject={Bellock.net},%
+  pdfproducer={Bellock Journal Workshop v1.0.0},%
+  pdfkeywords={Kenneth,Bellock,Beer,Journal}  
+  ]{hyperref}
+  
+\usepackage{booktabs} % top and bottom rules for table 
+\usepackage{float} % places tables in the right place on page
+\usepackage{units}
+\usepackage{bookmark}
+\usepackage{pdfpages}
+\usepackage[]{units}
+\usepackage[T1]{fontenc}
+\usepackage{subcaption}
+\usepackage{siunitx}
+\usepackage{placeins}
+\usepackage{scrhack}
+\usepackage{tabularx}
+
+% Glossary
+\input{glossary}
+
+% Used for jpg figures
+\usepackage{graphicx}
+
+% Subfigure range references
+\usepackage[compress]{cleveref}
+\crefname{subfigure}{subfigure}{subfigures}
+\Crefname{subfigure}{Subfigure}{Subfigures}
+\crefrangelabelformat{subfigure}{(#3#1#4--#5\crefstripprefix{#1}{#2}#6)}
+
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{positioning,calc,patterns,decorations.pathmorphing,decorations.markings,shapes,arrows}
+\usepackage{amsmath,bm,times}
+
+\def\english#1{\emph{#1}}
+\tikzset{
+  arrow/.style={-stealth', line width=0.5pt},
+  every picture/.append style={line width=1pt},
+}
+
+\setcounter{secnumdepth}{-1}  % Disables chapter, section and subsection numbering.
+
+\date{} % Don't want a date under email address on title page so this makes it nothing
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % command to make the lines in title page
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+% Customize the Lab Book to work like a Work Journal
+\newcommand{\newday}{\labday}
+\newcommand{\newentry}{\experiment}
+
+% Define my own tilde ~
+\newcommand{\mytilde}{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}
+%---------
+% Creates a new environment called my_itemize that I can use instead of itemize. This new environment is identical to itemize but makes it so no gaps are present between bulleted points.
+\newenvironment{my_itemize} 
+{\begin{itemize}
+\setlength{\itemsep}{1pt} 
+\setlength{\parskip}{0pt}
+ \setlength{\parsep}{0pt}}
+{\end{itemize}}
+%---------
+
+%----------- DEFINITION OF EXPERIMENTS FOR EASY REFERENCE LATER
+\newexperiment{genadmin}{Gen/Admin}
+\newexperiment{ap}{A/P}
+%-----------
+
+\begin{document} 
+
+\frontmatter
+\title{
+	\begin{center}
+	  \HRule \\[0.4cm]
+	  { \Huge \bfseries Homebrew Journal\\
+	  May 20, 2018 - Present}\\[0.4cm]
+	  \HRule \\[1.5cm]
+                  \includegraphics[width=90mm]{cover_image}
+	\end{center}
+}
+\author{\Huge Kenneth E. Bellock \\ \\ \LARGE ken@bellock.net \\[1.5cm] Aprill 11, 2016 - TBD \\[1.5cm] This Journal is intended for personal use only.}
+\maketitle
+
+\printindex
+\printglossaries
+\glsaddall
+\tableofcontents
+
+\mainmatter
+
+\include{entries/2018-Entries} 
+\include{entries/2019-Entries} 
+
+\end{document}
+
