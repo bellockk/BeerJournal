@@ -1,0 +1,24 @@
+name: CI
+on: 
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build-documents:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y texlive texlive-latex-extra texlive-science texlive-fonts-extra biber virtualenv
+          virtualenv local
+          local/bin/python -m pip install scons mako
+      - name: Build Journal
+        run: local/bin/scons
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Journal
+          path: dist/Beer Journal - Kenneth E. Bellock.pdf
