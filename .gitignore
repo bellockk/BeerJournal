@@ -16,3 +16,4 @@
 .sconsign.dblite
 .pydevproject
 .ropeproject
+.~lock.*
